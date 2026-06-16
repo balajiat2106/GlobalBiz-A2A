@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: globalbiz-a2a
+    runtime: python
+    plan: free
+    buildCommand: cd business-advisor && pip install -r requirements.txt
+    startCommand: cd business-advisor && python web_app.py
+    envVars:
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: OPENAI_API_KEY
+        sync: false

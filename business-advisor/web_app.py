@@ -1,4 +1,5 @@
 import json
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote
@@ -76,10 +77,10 @@ class MissionControlHandler(BaseHTTPRequestHandler):
 
 
 def main():
-    host = "127.0.0.1"
-    port = 8090
+    host = os.getenv("HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", "8090"))
     server = ThreadingHTTPServer((host, port), MissionControlHandler)
-    print(f"Mission Control running at http://{host}:{port}")
+    print(f"Mission Control running on {host}:{port}")
     server.serve_forever()
 
 

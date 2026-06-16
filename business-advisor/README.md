@@ -55,6 +55,22 @@ http://127.0.0.1:8090/static/console.html
 
 The Presentation Console reveals the mission transcript one step at a time: user request, LLM plan, discovery, selection, A2A message exchange, trace, budget fit, recommendations, and next step.
 
+## Deploy
+
+This repo includes Render configuration in `render.yaml`.
+
+Recommended Render settings:
+
+```text
+Build Command: cd business-advisor && pip install -r requirements.txt
+Start Command: cd business-advisor && python web_app.py
+Environment:
+  OPENAI_API_KEY = your key
+  OPENAI_MODEL = gpt-4.1-mini
+```
+
+Do not commit `.env`; add the API key only in the hosting provider's environment variable settings.
+
 ## Test
 
 Run the optional LLM smoke test. This uses a small number of OpenAI API calls:
