@@ -44,5 +44,226 @@
       "compliance_level": "high",
       "risks": ["cash tied in inventory", "shipment rejection"]
     }
+  ],
+  "UAE": [
+    {
+      "name": "Business Setup Support Services",
+      "summary": "Help founders compare mainland and free zone setup paths, prepare documents, and coordinate basic launch services.",
+      "base_startup_cost": 18000,
+      "demand_score": 82,
+      "profit_score": 76,
+      "profit_potential": "Medium with service-led margins",
+      "supply_complexity": "low",
+      "compliance_level": "medium",
+      "risks": ["trust building", "partner dependency"]
+    },
+    {
+      "name": "Niche E-commerce Reseller",
+      "summary": "Sell focused product categories online using local marketplaces, lean inventory, and third-party delivery partners.",
+      "base_startup_cost": 22000,
+      "demand_score": 84,
+      "profit_score": 74,
+      "profit_potential": "Medium-high if inventory is controlled",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["marketplace competition", "inventory mistakes"]
+    },
+    {
+      "name": "Specialty Food Trading",
+      "summary": "Import and distribute differentiated packaged food products to niche grocery stores and online buyers.",
+      "base_startup_cost": 42000,
+      "demand_score": 78,
+      "profit_score": 75,
+      "profit_potential": "High but compliance and inventory heavy",
+      "supply_complexity": "high",
+      "compliance_level": "high",
+      "risks": ["food labeling", "inventory cash lock"]
+    },
+    {
+      "name": "Tourism Experience Brokerage",
+      "summary": "Package local experiences with licensed providers and sell to inbound travelers through digital channels.",
+      "base_startup_cost": 14000,
+      "demand_score": 76,
+      "profit_score": 70,
+      "profit_potential": "Moderate with low startup cost",
+      "supply_complexity": "low",
+      "compliance_level": "medium",
+      "risks": ["seasonality", "provider quality"]
+    }
+  ],
+  "UK": [
+    {
+      "name": "Niche Online Retail Brand",
+      "summary": "Sell focused consumer products through Shopify, marketplaces, and local fulfilment partners.",
+      "base_startup_cost": 26000,
+      "demand_score": 82,
+      "profit_score": 74,
+      "profit_potential": "Medium-high with strong positioning",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["customer acquisition cost", "VAT complexity"]
+    },
+    {
+      "name": "B2B Admin and Virtual Operations Service",
+      "summary": "Support SMEs with bookkeeping coordination, CRM cleanup, appointment operations, and document workflows.",
+      "base_startup_cost": 9000,
+      "demand_score": 76,
+      "profit_score": 70,
+      "profit_potential": "Moderate with low startup cost",
+      "supply_complexity": "low",
+      "compliance_level": "low",
+      "risks": ["client acquisition", "service differentiation"]
+    },
+    {
+      "name": "Specialty Food Import Reseller",
+      "summary": "Import shelf-stable specialty foods and resell to local ethnic groceries and online buyers.",
+      "base_startup_cost": 38000,
+      "demand_score": 78,
+      "profit_score": 73,
+      "profit_potential": "High if distribution is focused",
+      "supply_complexity": "high",
+      "compliance_level": "high",
+      "risks": ["food labeling", "customs delays"]
+    }
+  ],
+  "CANADA": [
+    {
+      "name": "Local Services Lead Generation Agency",
+      "summary": "Generate and qualify leads for home services, clinics, and professional service providers.",
+      "base_startup_cost": 11000,
+      "demand_score": 78,
+      "profit_score": 72,
+      "profit_potential": "Moderate with recurring retainers",
+      "supply_complexity": "low",
+      "compliance_level": "low",
+      "risks": ["ad cost volatility", "client retention"]
+    },
+    {
+      "name": "Niche E-commerce and Marketplace Reseller",
+      "summary": "Sell focused products through Canadian marketplaces with local fulfilment and controlled inventory.",
+      "base_startup_cost": 30000,
+      "demand_score": 80,
+      "profit_score": 74,
+      "profit_potential": "Medium-high if inventory turns quickly",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["inventory mistakes", "shipping costs"]
+    },
+    {
+      "name": "Immigrant Founder Support Service",
+      "summary": "Help new founders navigate basic vendor selection, document preparation, and launch operations.",
+      "base_startup_cost": 14000,
+      "demand_score": 74,
+      "profit_score": 68,
+      "profit_potential": "Moderate with community-focused distribution",
+      "supply_complexity": "low",
+      "compliance_level": "medium",
+      "risks": ["trust building", "scope creep"]
+    }
+  ],
+  "AUSTRALIA": [
+    {
+      "name": "Mobile Business Support Services",
+      "summary": "Provide document handling, admin setup, appointment coordination, and small-business operations support.",
+      "base_startup_cost": 12000,
+      "demand_score": 74,
+      "profit_score": 68,
+      "profit_potential": "Moderate with low overhead",
+      "supply_complexity": "low",
+      "compliance_level": "low",
+      "risks": ["local demand density", "customer trust"]
+    },
+    {
+      "name": "Specialty Product Import and Online Resale",
+      "summary": "Import differentiated consumer products and sell online using local fulfilment.",
+      "base_startup_cost": 36000,
+      "demand_score": 80,
+      "profit_score": 74,
+      "profit_potential": "Medium-high but inventory dependent",
+      "supply_complexity": "high",
+      "compliance_level": "medium",
+      "risks": ["import lead time", "inventory cash lock"]
+    },
+    {
+      "name": "Tourism Experience Brokerage",
+      "summary": "Package tours and experiences from licensed local operators for inbound and domestic travelers.",
+      "base_startup_cost": 16000,
+      "demand_score": 76,
+      "profit_score": 70,
+      "profit_potential": "Moderate with seasonal upside",
+      "supply_complexity": "low",
+      "compliance_level": "medium",
+      "risks": ["seasonality", "provider quality"]
+    }
+  ],
+  "SINGAPORE": [
+    {
+      "name": "B2B Procurement and Sourcing Desk",
+      "summary": "Help SMEs source regional suppliers, compare quotes, and coordinate purchase workflows.",
+      "base_startup_cost": 20000,
+      "demand_score": 80,
+      "profit_score": 76,
+      "profit_potential": "Medium-high with asset-light operations",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["supplier reliability", "thin early margins"]
+    },
+    {
+      "name": "Premium E-commerce Microbrand",
+      "summary": "Launch a narrow consumer brand with regional fulfilment and marketplace distribution.",
+      "base_startup_cost": 34000,
+      "demand_score": 82,
+      "profit_score": 74,
+      "profit_potential": "High if customer acquisition is controlled",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["competition", "inventory mistakes"]
+    },
+    {
+      "name": "Corporate Services Referral Partner",
+      "summary": "Generate qualified leads for incorporation, accounting, visa, and office service providers.",
+      "base_startup_cost": 10000,
+      "demand_score": 74,
+      "profit_score": 68,
+      "profit_potential": "Moderate with partnership commissions",
+      "supply_complexity": "low",
+      "compliance_level": "low",
+      "risks": ["partner dependency", "lead quality"]
+    }
+  ],
+  "INDIA": [
+    {
+      "name": "Local D2C Brand",
+      "summary": "Build a focused direct-to-consumer product brand using local manufacturers and marketplace channels.",
+      "base_startup_cost": 16000,
+      "demand_score": 84,
+      "profit_score": 76,
+      "profit_potential": "High if product-market fit is clear",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["competition", "working capital pressure"]
+    },
+    {
+      "name": "B2B Digital Services Studio",
+      "summary": "Offer web, automation, reporting, and operations tooling for small businesses.",
+      "base_startup_cost": 7000,
+      "demand_score": 78,
+      "profit_score": 72,
+      "profit_potential": "Moderate-high with low capital needs",
+      "supply_complexity": "low",
+      "compliance_level": "low",
+      "risks": ["client acquisition", "delivery quality"]
+    },
+    {
+      "name": "Regional Food Cloud Kitchen",
+      "summary": "Operate a small delivery-first food brand in one city with focused menu economics.",
+      "base_startup_cost": 24000,
+      "demand_score": 80,
+      "profit_score": 70,
+      "profit_potential": "Medium with operational discipline",
+      "supply_complexity": "medium",
+      "compliance_level": "high",
+      "risks": ["food safety", "delivery platform commissions"]
+    }
   ]
 }

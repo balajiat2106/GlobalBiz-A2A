@@ -14,5 +14,101 @@
       "typical_lead_time_days": 35,
       "import_notes": "Overseas imports may require customs broker support, labeling review, and tariff checks."
     }
+  },
+  "UAE": {
+    "business_setup": {
+      "entity_type": "mainland company or free zone entity",
+      "tax_notes": "Corporate tax, VAT registration thresholds, and emirate/free-zone licensing rules should be reviewed.",
+      "common_constraints": [
+        "License category must match business activity",
+        "Free zone and mainland rules differ",
+        "Some activities need external approvals"
+      ]
+    },
+    "shipping": {
+      "domestic_network": "Strong port, air cargo, warehousing, and last-mile delivery ecosystem.",
+      "typical_lead_time_days": 28,
+      "import_notes": "Imports may require customs documentation, product registration, labeling checks, and duties review."
+    }
+  },
+  "UK": {
+    "business_setup": {
+      "entity_type": "limited company or sole trader",
+      "tax_notes": "Corporation tax, VAT thresholds, PAYE, and Companies House requirements should be reviewed.",
+      "common_constraints": [
+        "VAT registration depends on turnover",
+        "Companies House filings are required for limited companies",
+        "Regulated activities may need sector approval"
+      ]
+    },
+    "shipping": {
+      "domestic_network": "Strong parcel, fulfilment, and freight network with mature e-commerce logistics.",
+      "typical_lead_time_days": 32,
+      "import_notes": "Imports may require commodity codes, customs declarations, duties, VAT, and product labeling checks."
+    }
+  },
+  "CANADA": {
+    "business_setup": {
+      "entity_type": "corporation, sole proprietorship, or partnership",
+      "tax_notes": "GST/HST, provincial registration, payroll, and corporate tax rules should be reviewed.",
+      "common_constraints": [
+        "Provincial rules differ",
+        "GST/HST registration depends on revenue",
+        "Some sectors require provincial licenses"
+      ]
+    },
+    "shipping": {
+      "domestic_network": "Reliable parcel and freight network, with higher costs across long distances.",
+      "typical_lead_time_days": 34,
+      "import_notes": "Imports may require customs broker support, duties, GST/HST handling, and labeling compliance."
+    }
+  },
+  "AUSTRALIA": {
+    "business_setup": {
+      "entity_type": "company, sole trader, or partnership",
+      "tax_notes": "ABN, GST thresholds, income tax, payroll tax, and state rules should be reviewed.",
+      "common_constraints": [
+        "ABN registration is commonly required",
+        "GST registration depends on turnover",
+        "Food, health, and travel activities may need extra approvals"
+      ]
+    },
+    "shipping": {
+      "domestic_network": "Strong metro logistics, with longer lead times and costs for remote regions.",
+      "typical_lead_time_days": 36,
+      "import_notes": "Imports may require biosecurity checks, customs declarations, duties, GST, and labeling review."
+    }
+  },
+  "SINGAPORE": {
+    "business_setup": {
+      "entity_type": "private limited company or sole proprietorship",
+      "tax_notes": "ACRA registration, corporate tax, GST thresholds, and employment rules should be reviewed.",
+      "common_constraints": [
+        "ACRA registration is required",
+        "Some activities require sector licenses",
+        "GST registration depends on taxable turnover"
+      ]
+    },
+    "shipping": {
+      "domestic_network": "Excellent port, air cargo, warehousing, and regional distribution infrastructure.",
+      "typical_lead_time_days": 25,
+      "import_notes": "Imports may require permits, product registration, GST handling, and sector-specific approvals."
+    }
+  },
+  "INDIA": {
+    "business_setup": {
+      "entity_type": "private limited company, LLP, partnership, or proprietorship",
+      "tax_notes": "GST registration, income tax, TDS, payroll, and state-level licenses should be reviewed.",
+      "common_constraints": [
+        "GST rules depend on turnover and activity",
+        "Shops and establishment rules vary by state",
+        "Food and regulated categories need extra approvals"
+      ]
+    },
+    "shipping": {
+      "domestic_network": "Large parcel, marketplace fulfilment, trucking, and hyperlocal delivery ecosystem.",
+      "typical_lead_time_days": 30,
+      "import_notes": "Imports may require IEC, customs documentation, duties, GST, product registration, and labeling checks."
+    }
   }
 }

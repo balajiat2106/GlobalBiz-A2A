@@ -15,14 +15,14 @@ class ComplianceAgent:
             if level == "low":
                 score = 88
                 notes = f"Basic {country_data['entity_type']} setup, local registration, and tax tracking."
-                risks = ["state registration differences"]
+                risks = ["local registration differences"]
             elif level == "medium":
                 score = 72
-                notes = "Requires sales tax review, contracts, insurance, and category-specific checks."
-                risks = ["sales tax complexity", "insurance requirements"]
+                notes = f"Requires activity licensing, contracts, insurance, and tax review. {country_data['tax_notes']}"
+                risks = ["tax complexity", "insurance requirements"]
             else:
                 score = 52
-                notes = "Requires FDA/import review, labeling checks, customs documentation, and tax setup."
+                notes = "Requires import review, product registration or labeling checks, customs documentation, and tax setup."
                 risks = ["import compliance", "labeling requirements", "customs documentation"]
 
             result[product["name"]] = {"score": score, "notes": notes, "risks": risks}
