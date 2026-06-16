@@ -1,0 +1,18 @@
+{
+  "USA": {
+    "business_setup": {
+      "entity_type": "LLC or corporation",
+      "tax_notes": "Federal tax ID, state registration, and sales tax review may be required.",
+      "common_constraints": [
+        "State-level licensing varies",
+        "Sales tax nexus must be reviewed",
+        "Insurance needs depend on business type"
+      ]
+    },
+    "shipping": {
+      "domestic_network": "Strong parcel, freight, warehousing, and 3PL ecosystem.",
+      "typical_lead_time_days": 35,
+      "import_notes": "Overseas imports may require customs broker support, labeling review, and tariff checks."
+    }
+  }
+}

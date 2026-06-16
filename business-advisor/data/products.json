@@ -1,0 +1,48 @@
+{
+  "USA": [
+    {
+      "name": "B2B Procurement Brokerage",
+      "summary": "Help small retailers source products from vetted suppliers and earn service fees or commissions.",
+      "base_startup_cost": 28000,
+      "demand_score": 84,
+      "profit_score": 82,
+      "profit_potential": "Medium-high with low inventory exposure",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["client acquisition", "thin early margins"]
+    },
+    {
+      "name": "Mobile Notary and Document Services",
+      "summary": "Offer mobile notarization, apostille coordination, and document support for local customers.",
+      "base_startup_cost": 12000,
+      "demand_score": 72,
+      "profit_score": 68,
+      "profit_potential": "Moderate but fast to launch",
+      "supply_complexity": "low",
+      "compliance_level": "low",
+      "risks": ["local demand density", "state-specific rules"]
+    },
+    {
+      "name": "Niche E-commerce Brand",
+      "summary": "Launch a focused online store using low-MOQ suppliers and third-party fulfillment.",
+      "base_startup_cost": 42000,
+      "demand_score": 86,
+      "profit_score": 76,
+      "profit_potential": "High if customer acquisition is controlled",
+      "supply_complexity": "medium",
+      "compliance_level": "medium",
+      "risks": ["ad cost inflation", "inventory mistakes"]
+    },
+    {
+      "name": "Specialty Food Import Micro-Distributor",
+      "summary": "Import and distribute differentiated packaged foods to local stores and online buyers.",
+      "base_startup_cost": 54000,
+      "demand_score": 82,
+      "profit_score": 78,
+      "profit_potential": "High but capital intensive",
+      "supply_complexity": "high",
+      "compliance_level": "high",
+      "risks": ["cash tied in inventory", "shipment rejection"]
+    }
+  ]
+}
