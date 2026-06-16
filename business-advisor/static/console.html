@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlobalBiz Presentation Console</title>
+    <link rel="stylesheet" href="/static/console.css" />
+  </head>
+  <body>
+    <main class="console-shell">
+      <header class="console-topbar">
+        <div>
+          <p class="eyebrow">GlobalBiz A2A</p>
+          <h1>Presentation Console</h1>
+        </div>
+        <nav>
+          <a href="/">Mission Control</a>
+        </nav>
+      </header>
+
+      <section class="prompt-deck">
+        <form id="consoleForm">
+          <label for="consoleQuery">Demo prompt</label>
+          <div class="prompt-row">
+            <textarea id="consoleQuery" rows="3">I have USD 50000 and want supplier, finance, and compliance analysis for starting a business in UAE</textarea>
+            <button type="submit" id="runConsole">Build Steps</button>
+          </div>
+        </form>
+        <div class="controls">
+          <button type="button" id="prevStep">Previous</button>
+          <button type="button" id="nextStep">Next Step</button>
+          <button type="button" id="playSteps">Play</button>
+          <button type="button" id="showAll">Show All</button>
+        </div>
+      </section>
+
+      <section id="clarificationBox" class="console-notice hidden">
+        <strong>Clarification needed</strong>
+        <p id="clarificationText"></p>
+        <form id="consoleClarificationForm" class="clarification-row">
+          <input id="consoleClarificationInput" type="text" placeholder="Answer the advisor" />
+          <button type="submit">Continue</button>
+        </form>
+      </section>
+
+      <section id="errorBox" class="console-notice hidden"></section>
+
+      <section class="terminal-frame">
+        <div class="terminal-bar">
+          <span></span>
+          <span></span>
+          <span></span>
+          <strong>A2A Mission Transcript</strong>
+        </div>
+        <div id="stepCounter" class="step-counter">No mission loaded</div>
+        <div id="terminalOutput" class="terminal-output">
+          <article class="terminal-step visible">
+            <p class="line muted">$ waiting for founder request...</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="/static/console.js"></script>
+  </body>
+</html>

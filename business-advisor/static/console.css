@@ -1,0 +1,266 @@
+:root {
+  --bg: #111713;
+  --ink: #f4f1e8;
+  --muted: #aab6ad;
+  --line: #2d3a33;
+  --panel: #17211c;
+  --panel-soft: #1d2b24;
+  --green: #73d99f;
+  --blue: #82b7ff;
+  --gold: #f2c16b;
+  --red: #ff8d80;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(115, 217, 159, 0.12), transparent 28%),
+    linear-gradient(315deg, rgba(130, 183, 255, 0.1), transparent 30%),
+    var(--bg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+button,
+textarea,
+input {
+  font: inherit;
+}
+
+.console-shell {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 22px;
+}
+
+.console-topbar,
+.prompt-deck,
+.terminal-frame,
+.console-notice {
+  border: 1px solid var(--line);
+  background: rgba(23, 33, 28, 0.9);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.console-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 22px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3.1rem);
+  line-height: 1;
+}
+
+a {
+  color: var(--blue);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.prompt-deck {
+  margin-top: 16px;
+  padding: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.prompt-row,
+.clarification-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px;
+  gap: 12px;
+}
+
+textarea,
+input {
+  width: 100%;
+  border: 1px solid #3a4b42;
+  border-radius: 8px;
+  background: #0e1511;
+  color: var(--ink);
+  padding: 12px;
+  outline: none;
+}
+
+textarea:focus,
+input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(115, 217, 159, 0.16);
+}
+
+button {
+  border: 1px solid #4a6255;
+  border-radius: 8px;
+  background: var(--green);
+  color: #0b120e;
+  cursor: pointer;
+  font-weight: 950;
+}
+
+.controls {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.controls button {
+  background: var(--panel-soft);
+  color: var(--ink);
+  padding: 9px 12px;
+}
+
+.console-notice {
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.terminal-frame {
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  background: #0b110e;
+  padding: 12px 14px;
+}
+
+.terminal-bar span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.terminal-bar span:nth-child(2) {
+  background: var(--gold);
+}
+
+.terminal-bar span:nth-child(3) {
+  background: var(--green);
+}
+
+.terminal-bar strong {
+  margin-left: 8px;
+  color: var(--muted);
+}
+
+.step-counter {
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  padding: 10px 14px;
+  font-size: 0.86rem;
+}
+
+.terminal-output {
+  min-height: 620px;
+  padding: 18px;
+}
+
+.terminal-step {
+  display: none;
+  border-left: 4px solid var(--line);
+  background: rgba(14, 21, 17, 0.7);
+  margin-bottom: 14px;
+  padding: 16px;
+}
+
+.terminal-step.visible {
+  display: block;
+  animation: reveal 0.18s ease-out;
+}
+
+.terminal-step h2 {
+  margin: 0 0 12px;
+  color: var(--green);
+  font-size: 1rem;
+}
+
+.line {
+  margin: 6px 0;
+  line-height: 1.55;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.gold {
+  color: var(--gold);
+}
+
+.green {
+  color: var(--green);
+}
+
+.red {
+  color: var(--red);
+}
+
+.block {
+  border: 1px solid #2f4037;
+  background: #0e1511;
+  margin-top: 10px;
+  padding: 12px;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .console-shell {
+    padding: 12px;
+  }
+
+  .console-topbar,
+  .prompt-row,
+  .clarification-row {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+}

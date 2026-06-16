@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlobalBiz Mission Control</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">GlobalBiz A2A</p>
+          <h1>Mission Control</h1>
+        </div>
+        <div class="top-actions">
+          <a class="console-link" href="/static/console.html">Presentation Console</a>
+          <div class="system-state" id="systemState">
+            <span class="state-light"></span>
+            Ready
+          </div>
+        </div>
+      </header>
+
+      <section class="command-center">
+        <form id="queryForm" class="query-form">
+          <label for="queryInput">Founder request</label>
+          <div class="query-row">
+            <textarea id="queryInput" rows="3">I have USD 50000 and want supplier, finance, and compliance analysis for starting a business in UAE</textarea>
+            <button type="submit" id="runButton">Run Mission</button>
+          </div>
+        </form>
+        <div class="quick-prompts" aria-label="Example prompts">
+          <button type="button" data-query="I have USD 50000 and only want market research for starting a business in USA">Market only</button>
+          <button type="button" data-query="I want to do a business in UAE and skip compliance and logistics. I have USD 10000">Exclude agents</button>
+          <button type="button" data-query="a business in UK, budget 10000, compliance to be the top priority">Compliance priority</button>
+          <button type="button" data-query="I want to start a business">Clarification</button>
+        </div>
+      </section>
+
+      <section class="mission-map" aria-label="Mission stages">
+        <div class="stage active" data-stage="planner">
+          <span>01</span>
+          <strong>LLM Planner</strong>
+          <small>Intent, scope, constraints</small>
+        </div>
+        <div class="stage" data-stage="tools">
+          <span>02</span>
+          <strong>MCP Tools</strong>
+          <small>Market, country, shipping</small>
+        </div>
+        <div class="stage" data-stage="a2a">
+          <span>03</span>
+          <strong>A2A Network</strong>
+          <small>Agent cards and tasks</small>
+        </div>
+        <div class="stage" data-stage="report">
+          <span>04</span>
+          <strong>Launch Report</strong>
+          <small>Budget-fit recommendations</small>
+        </div>
+      </section>
+
+      <section id="clarificationPanel" class="notice hidden">
+        <strong>Clarification needed</strong>
+        <p id="clarificationQuestion"></p>
+        <form id="clarificationForm" class="clarification-form">
+          <input id="clarificationInput" type="text" placeholder="Type your answer" />
+          <button type="submit">Continue</button>
+        </form>
+      </section>
+
+      <section id="messagePanel" class="notice hidden"></section>
+
+      <section class="dashboard">
+        <section class="panel planner-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Planner</p>
+              <h2>Decision Brief</h2>
+            </div>
+            <span id="plannerBadge" class="badge">Idle</span>
+          </div>
+          <dl class="brief-grid">
+            <div><dt>Country</dt><dd id="countryValue">-</dd></div>
+            <div><dt>Budget</dt><dd id="budgetValue">-</dd></div>
+            <div><dt>Focus</dt><dd id="focusValue">-</dd></div>
+            <div><dt>Action</dt><dd id="actionValue">-</dd></div>
+          </dl>
+          <p id="plannerNotes" class="notes">Run a mission to see the LLM planning decision.</p>
+        </section>
+
+        <section class="panel selection-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Discovery</p>
+              <h2>Availability vs Selection</h2>
+            </div>
+          </div>
+          <div class="selection-grid">
+            <div>
+              <h3>Identified Tools</h3>
+              <div id="identifiedTools" class="chip-list"></div>
+            </div>
+            <div>
+              <h3>Selected Tools</h3>
+              <div id="selectedTools" class="chip-list selected"></div>
+            </div>
+            <div>
+              <h3>Identified Agents</h3>
+              <div id="identifiedAgents" class="chip-list"></div>
+            </div>
+            <div>
+              <h3>Selected Agents</h3>
+              <div id="selectedAgents" class="chip-list selected"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel a2a-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Agent2Agent</p>
+              <h2>A2A Message Exchange</h2>
+            </div>
+            <span id="a2aCount" class="badge">0 calls</span>
+          </div>
+          <div id="a2aTimeline" class="a2a-timeline">
+            <p class="empty">A2A task envelopes will appear here after a mission runs.</p>
+          </div>
+        </section>
+
+        <section class="panel recommendations-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Outcome</p>
+              <h2>Recommendations</h2>
+            </div>
+          </div>
+          <p id="budgetSummary" class="notes">Budget-fit status will appear here.</p>
+          <div id="recommendations" class="recommendations"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

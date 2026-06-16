@@ -30,6 +30,31 @@ cd business-advisor
 python3 app.py
 ```
 
+## Mission Control Dashboard
+
+Run the visual demo dashboard:
+
+```bash
+cd business-advisor
+python3 web_app.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8090
+```
+
+The dashboard shows the same backend flow as the CLI: LLM planner decision, identified versus selected tools, identified versus selected A2A capabilities, A2A message exchange, and final recommendations.
+
+For a step-by-step presentation view, open:
+
+```text
+http://127.0.0.1:8090/static/console.html
+```
+
+The Presentation Console reveals the mission transcript one step at a time: user request, LLM plan, discovery, selection, A2A message exchange, trace, budget fit, recommendations, and next step.
+
 ## Test
 
 Run the optional LLM smoke test. This uses a small number of OpenAI API calls:
