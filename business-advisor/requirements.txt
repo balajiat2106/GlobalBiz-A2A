@@ -1,1 +1,2 @@
-# No third-party dependencies required for the first demo.
+# No third-party dependencies required.
+# Optional: set OPENAI_API_KEY to enable LLM-based planning through the OpenAI Responses API.
