@@ -1,6 +1,13 @@
 class FinanceAgent:
     """Demo external agent for financial feasibility."""
 
+    def handle_task(self, task):
+        if task["capability"] != "finance.feasibility":
+            raise ValueError(f"FinanceAgent cannot handle capability: {task['capability']}")
+
+        payload = task["payload"]
+        return self.analyze(payload["market_data"], payload["budget_usd"])
+
     def analyze(self, market_data, budget_usd):
         result = {}
         for product in market_data["products"]:

@@ -1,6 +1,13 @@
 class ComplianceAgent:
     """Demo external agent for regulation and compliance feasibility."""
 
+    def handle_task(self, task):
+        if task["capability"] != "compliance.review":
+            raise ValueError(f"ComplianceAgent cannot handle capability: {task['capability']}")
+
+        payload = task["payload"]
+        return self.analyze(payload["market_data"], payload["country_data"])
+
     def analyze(self, market_data, country_data):
         result = {}
         for product in market_data["products"]:

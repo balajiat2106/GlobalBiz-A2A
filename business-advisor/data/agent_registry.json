@@ -1,0 +1,40 @@
+{
+  "agents": [
+    {
+      "id": "supplier-agent",
+      "name": "Supplier Agent",
+      "endpoint": "local://agents.supplier.SupplierAgent",
+      "version": "1.0.0",
+      "capabilities": [
+        {
+          "name": "supplier.analysis",
+          "description": "Evaluates sourcing difficulty, supplier availability, and logistics risk."
+        }
+      ]
+    },
+    {
+      "id": "finance-agent",
+      "name": "Finance Agent",
+      "endpoint": "local://agents.finance.FinanceAgent",
+      "version": "1.0.0",
+      "capabilities": [
+        {
+          "name": "finance.feasibility",
+          "description": "Calculates startup cost, budget fit, and financial feasibility notes."
+        }
+      ]
+    },
+    {
+      "id": "compliance-agent",
+      "name": "Compliance Agent",
+      "endpoint": "local://agents.compliance.ComplianceAgent",
+      "version": "1.0.0",
+      "capabilities": [
+        {
+          "name": "compliance.review",
+          "description": "Reviews registration, tax, licensing, import, and category compliance risk."
+        }
+      ]
+    }
+  ]
+}

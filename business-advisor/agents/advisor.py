@@ -1,6 +1,4 @@
-from agents.compliance import ComplianceAgent
-from agents.finance import FinanceAgent
-from agents.supplier import SupplierAgent
+from agents.registry import A2AClient, AgentRegistry
 from tools.country_tool import CountryTool
 from tools.market_tool import MarketTool
 from tools.shipping_tool import ShippingTool
@@ -13,9 +11,8 @@ class BusinessAdvisorAgent:
         self.market_tool = MarketTool()
         self.country_tool = CountryTool()
         self.shipping_tool = ShippingTool()
-        self.supplier_agent = SupplierAgent()
-        self.finance_agent = FinanceAgent()
-        self.compliance_agent = ComplianceAgent()
+        self.registry = AgentRegistry()
+        self.a2a_client = A2AClient()
 
     def recommend(self, request):
         country = request["country"]
@@ -32,17 +29,21 @@ class BusinessAdvisorAgent:
         country_data = self.country_tool.get_country_profile(country)
         shipping_data = self.shipping_tool.get_shipping_profile(country)
 
-        trace.extend(
-            [
-                "Business Advisor Agent contacted SupplierAgent for sourcing feasibility.",
-                "Business Advisor Agent contacted FinanceAgent for budget feasibility.",
-                "Business Advisor Agent contacted ComplianceAgent for regulatory feasibility.",
-            ]
+        supplier_result = self._call_external_agent(
+            capability="supplier.analysis",
+            payload={"market_data": market_data, "shipping_data": shipping_data},
+            trace=trace,
         )
-
-        supplier_result = self.supplier_agent.analyze(market_data, shipping_data)
-        finance_result = self.finance_agent.analyze(market_data, budget_usd)
-        compliance_result = self.compliance_agent.analyze(market_data, country_data)
+        finance_result = self._call_external_agent(
+            capability="finance.feasibility",
+            payload={"market_data": market_data, "budget_usd": budget_usd},
+            trace=trace,
+        )
+        compliance_result = self._call_external_agent(
+            capability="compliance.review",
+            payload={"market_data": market_data, "country_data": country_data},
+            trace=trace,
+        )
 
         recommendations = []
         for product in market_data["products"]:
@@ -83,6 +84,7 @@ class BusinessAdvisorAgent:
         return {
             "country": country,
             "budget_usd": budget_usd,
+            "capability_registry": self.registry.list_capabilities(),
             "trace": trace,
             "recommendations": recommendations,
             "next_step": (
@@ -90,6 +92,15 @@ class BusinessAdvisorAgent:
                 "3 supplier quotes, and a state-specific compliance checklist."
             ),
         }
+
+    def _call_external_agent(self, capability, payload, trace):
+        agent_card = self.registry.discover(capability)
+        trace.append(
+            f"Discovered {agent_card['name']} for capability '{capability}' "
+            f"at {agent_card['endpoint']}."
+        )
+        trace.append(f"Sent A2A task envelope to {agent_card['name']}.")
+        return self.a2a_client.send_task(agent_card, capability, payload)
 
     def _score_option(self, product, estimated_cost, budget_usd, supplier_score, compliance_score):
         budget_score = 100 if estimated_cost <= budget_usd else max(30, int((budget_usd / estimated_cost) * 100))

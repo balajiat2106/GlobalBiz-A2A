@@ -1,6 +1,13 @@
 class SupplierAgent:
     """Demo external agent for supplier and sourcing feasibility."""
 
+    def handle_task(self, task):
+        if task["capability"] != "supplier.analysis":
+            raise ValueError(f"SupplierAgent cannot handle capability: {task['capability']}")
+
+        payload = task["payload"]
+        return self.analyze(payload["market_data"], payload["shipping_data"])
+
     def analyze(self, market_data, shipping_data):
         result = {}
         for product in market_data["products"]:

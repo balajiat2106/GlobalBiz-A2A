@@ -15,6 +15,11 @@ def main():
     print("\n=== Global Business Launch Advisor ===")
     print(f"Country: {report['country']}")
     print(f"Budget: USD {report['budget_usd']:,}")
+
+    print("\nDiscovered Capability Registry:")
+    for capability, agent in report["capability_registry"].items():
+        print(f"- {capability} -> {agent['agent_name']}")
+
     print("\nAgent Collaboration Trace:")
     for event in report["trace"]:
         print(f"- {event}")
