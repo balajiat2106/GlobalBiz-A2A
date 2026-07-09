@@ -1,138 +1,119 @@
-# Business Advisor A2A Demo
+# GlobalBiz A2A Business Advisor
 
-Code-level demo for a Business Advisor Agent that plans which MCP-style tools and external agents to call.
+An AI-powered global business launch advisor that demonstrates Agent-to-Agent
+(A2A) collaboration at code level.
+
+The user asks a business launch question, the Business Advisor Agent uses an
+LLM planner to decide which MCP-style tools and external agent capabilities are
+needed, then produces a structured recommendation with a visible execution
+trace.
+
+## What This Demo Shows
+
+- LLM-based planning instead of hardcoded routing.
+- Agent discovery through a capability registry.
+- MCP-style tool calls for market, country, and shipping data.
+- External demo agents for supplier, finance, and compliance analysis.
+- Clarification questions when required inputs are missing.
+- Scope control for unrelated or illegal business requests.
+- Budget-aware filtering of business options.
+- A visual Mission Control dashboard for presentations.
 
 ## Architecture
 
 ```text
-User query
-  -> Business Advisor Agent
-    -> AdvisorPlanner
-      -> LLM planner
-      -> identified tools
-      -> selected tools
-      -> identified agent capabilities
-      -> selected agent capabilities
-    -> MCP-style tools
-      -> market_tool
-      -> country_tool
-      -> shipping_tool
-    -> A2A Agent Registry
-      -> supplier.analysis
-      -> finance.feasibility
-      -> compliance.review
+User
+  |
+  v
+Business Advisor Agent
+  |
+  +-- LLM Planner
+  |     |
+  |     +-- Identifies available tools
+  |     +-- Identifies available agent capabilities
+  |     +-- Selects only what the user query needs
+  |
+  +-- MCP-Style Tools
+  |     |
+  |     +-- market_tool
+  |     +-- country_tool
+  |     +-- shipping_tool
+  |
+  +-- A2A Capability Registry
+        |
+        +-- supplier.analysis
+        +-- finance.feasibility
+        +-- compliance.review
 ```
 
-## Run
-
-```bash
-cd business-advisor
-python3 app.py
-```
-
-## Mission Control Dashboard
-
-Run the visual demo dashboard:
-
-```bash
-cd business-advisor
-python3 web_app.py
-```
-
-Then open:
+## Project Structure
 
 ```text
-http://127.0.0.1:8090
+business-advisor/
+  app.py                    # CLI demo
+  web_app.py                # Mission Control web server
+  agents/
+    advisor.py              # Main orchestrator
+    planner.py              # LLM-only planner
+    registry.py             # A2A discovery and task dispatch
+    supplier.py             # External supplier agent
+    finance.py              # External finance agent
+    compliance.py           # External compliance agent
+  tools/
+    market_tool.py          # Market/product assumptions
+    shipping_tool.py        # Import/export and logistics assumptions
+    country_tool.py         # Country setup assumptions
+  data/
+    products.json           # Country-specific business options
+    countries.json          # Country setup details
+    agent_registry.json     # External agent cards and capabilities
+  static/
+    index.html              # Mission Control dashboard
+    console.html            # Step-by-step presentation console
+  requirements.txt
 ```
 
-The dashboard shows the same backend flow as the CLI: LLM planner decision, identified versus selected tools, identified versus selected A2A capabilities, A2A message exchange, and final recommendations.
+## How The Flow Works
 
-For a step-by-step presentation view, open:
+1. The user enters a business question.
+2. The Advisor sends the query to the LLM planner.
+3. The planner returns a strict JSON plan:
+   - action
+   - country
+   - budget
+   - identified tools
+   - selected tools
+   - identified agent capabilities
+   - selected agent capabilities
+   - reasoning
+4. The Advisor validates required dependencies for the selected capabilities.
+5. MCP-style tools provide local business data.
+6. The Advisor discovers external agents from the registry.
+7. Selected external agents receive task envelopes and return analysis.
+8. The Advisor merges everything into final recommendations.
 
-```text
-http://127.0.0.1:8090/static/console.html
-```
+## Requirements
 
-The Presentation Console reveals the mission transcript one step at a time: user request, LLM plan, discovery, selection, A2A message exchange, trace, budget fit, recommendations, and next step.
+- Python 3.10+
+- OpenAI API key
 
-## Deploy
-
-This repo includes Render configuration in `render.yaml`.
-
-Recommended Render settings:
-
-```text
-Build Command: cd business-advisor && pip install -r requirements.txt
-Start Command: cd business-advisor && python web_app.py
-Environment:
-  OPENAI_API_KEY = your key
-  OPENAI_MODEL = gpt-4.1-mini
-```
-
-Do not commit `.env`; add the API key only in the hosting provider's environment variable settings.
-
-## Test
-
-Run the optional LLM smoke test. This uses a small number of OpenAI API calls:
-
-```bash
-python3 test_scenarios.py
-```
-
-Example queries:
-
-```text
-I want to start a business.
-I have USD 50000 and want to start a business in USA
-I only want market research for USA with USD 50000
-I need financial feasibility for USD 50000 in USA
-I only care about legal and tax issues for starting in USA with USD 50000
-What is the capital of France?
-I want to start a money laundering business.
-```
-
-Supported demo countries:
-
-```text
-USA, UAE, UK, Canada, Australia, Singapore, India
-```
-
-If the user asks for a country outside the demo dataset, the Advisor returns a country-specific knowledge message and does not call tools or agents.
-
-## Intelligent Planner
-
-Create a local `.env` file to let the Advisor use an LLM to plan the execution path and ask clarification questions when required information is missing:
+Create a local `.env` file:
 
 ```text
 OPENAI_API_KEY=your_api_key
 OPENAI_MODEL=gpt-4.1-mini
 ```
 
-`.env` is ignored by git. Use `.env.example` as the shareable template.
+`.env` is ignored by git. Use `.env.example` as the safe template.
 
-Without a real API key or network access, the Advisor returns a planner error instead of using hardcoded fallback planning.
+## Run The CLI Demo
 
-If the user leaves out required details such as country or budget, the Advisor asks a question before calling any tools or agents.
-
-If the user asks something unrelated to business launch advisory, the Advisor returns an out-of-scope response and does not call tools or agents.
-
-If the user asks for help with illegal business activity, the Advisor refuses and does not call tools or agents.
-
-The Advisor also filters recommendations by budget. If no option fits the user's budget, it returns only the closest option and clearly shows the budget gap instead of listing every over-budget idea as a normal recommendation.
-
-The Advisor honors explicit exclusions. For example, if the user says they do not need supplier, finance, or compliance analysis, the planner removes the matching tools and external agent capabilities before dispatch.
-
-The CLI displays availability versus selection separately:
-
-```text
-Identified Tools
-Selected Tools
-Identified Agent Capabilities
-Selected Agent Capabilities
-Execution Plan
+```bash
+cd business-advisor
+python3 app.py
 ```
 
-The terminal output is organized as a demo walkthrough:
+The CLI prints the full demo trace:
 
 ```text
 Step 1: User request and planner decision
@@ -144,3 +125,158 @@ Step 6: MCP tool and advisor trace
 Step 7: Final recommendations
 Step 8: Recommended next step
 ```
+
+## Run Mission Control
+
+```bash
+cd business-advisor
+python3 web_app.py
+```
+
+Open:
+
+```text
+http://127.0.0.1:8090/
+```
+
+If port `8090` is already used, run on another port:
+
+```bash
+PORT=8091 python3 web_app.py
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8091/
+```
+
+Presentation console:
+
+```text
+http://127.0.0.1:8090/static/console.html
+```
+
+The Mission Control dashboard is designed for demos. It shows the user request,
+LLM plan, available capabilities, selected capabilities, A2A exchange, trace,
+budget fit, and final recommendation.
+
+## Demo Prompts
+
+Use these prompts to show different planner decisions:
+
+```text
+I want to do a business in USA with a budget of USD 50000.
+```
+
+Expected: full strategy using market data and relevant external agents.
+
+```text
+I have USD 10000. Check only whether the business ideas are financially feasible in UAE.
+```
+
+Expected: finance-focused path with budget filtering.
+
+```text
+I want to do a business in UK, budget 10000, compliance to be the top priority.
+```
+
+Expected: compliance-focused path with country setup and compliance review.
+
+```text
+I want market research only for Singapore with USD 25000.
+```
+
+Expected: market-focused path without unnecessary finance, supplier, or
+compliance agents.
+
+```text
+I want to start a business.
+```
+
+Expected: Advisor asks a clarification question before calling tools or agents.
+
+```text
+What is the capital of France?
+```
+
+Expected: out-of-scope response.
+
+```text
+I want to start a money laundering business.
+```
+
+Expected: refusal because the request is illegal.
+
+## Supported Demo Countries
+
+```text
+USA, UAE, UK, Canada, Australia, Singapore, India
+```
+
+If a country is outside the demo dataset, the Advisor returns a friendly
+country-specific knowledge message and does not run the business analysis.
+
+## Planner Behavior
+
+The planner is intentionally LLM-only. If the OpenAI API key is missing, invalid,
+or unreachable, the app returns a planner error instead of using hardcoded
+fallback routing.
+
+The code still performs safety checks around the LLM output:
+
+- Invalid tool names are ignored.
+- Invalid capability names are ignored.
+- Missing country or budget becomes a clarification request.
+- Required dependencies are added for selected capabilities.
+- Out-of-scope and illegal requests do not call tools or agents.
+
+This keeps the demo intelligent while still preventing broken execution paths.
+
+## A2A Demo Details
+
+External agents are represented by agent cards in `data/agent_registry.json`.
+Each card exposes a capability, endpoint, version, and description.
+
+During execution, the Advisor:
+
+1. Discovers available capabilities from the registry.
+2. Selects only the capabilities chosen by the LLM planner.
+3. Builds a task envelope for each selected capability.
+4. Sends the task through the local A2A client.
+5. Records the request and response in the visible A2A event trace.
+
+This is a local demo implementation, but the shape mirrors a real A2A system:
+discovery, capability selection, task dispatch, and response aggregation.
+
+## Deployment
+
+The repository includes Render deployment files:
+
+- `render.yaml`
+- `Procfile`
+
+Recommended Render settings:
+
+```text
+Build Command: cd business-advisor && pip install -r requirements.txt
+Start Command: cd business-advisor && python web_app.py
+Environment:
+  OPENAI_API_KEY = your key
+  OPENAI_MODEL = gpt-4.1-mini
+```
+
+Do not commit `.env`. Add the API key only in the hosting provider's environment
+variable settings.
+
+## Optional Smoke Test
+
+This test uses a small number of OpenAI API calls:
+
+```bash
+cd business-advisor
+python3 test_scenarios.py
+```
+
+Use it before a demo to confirm the planner is returning valid plans for common
+scenarios.
