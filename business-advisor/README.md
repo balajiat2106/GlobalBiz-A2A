@@ -157,9 +157,25 @@ Presentation console:
 http://127.0.0.1:8090/static/console.html
 ```
 
+If you changed the port, use the same port for the console page. For example:
+
+```text
+http://127.0.0.1:8091/static/console.html
+```
+
 The Mission Control dashboard is designed for demos. It shows the user request,
 LLM plan, available capabilities, selected capabilities, A2A exchange, trace,
 budget fit, and final recommendation.
+
+## Screenshots
+
+Mission Control dashboard:
+
+![Mission Control dashboard](docs/assets/mission-control.png)
+
+Step-by-step presentation console:
+
+![Presentation console](docs/assets/presentation-console.png)
 
 ## Demo Prompts
 
@@ -269,9 +285,22 @@ Environment:
 Do not commit `.env`. Add the API key only in the hosting provider's environment
 variable settings.
 
-## Optional Smoke Test
+## Tests
 
-This test uses a small number of OpenAI API calls:
+Run the lightweight local test suite:
+
+```bash
+cd business-advisor
+python3 -m unittest discover -s tests -v
+```
+
+These tests do not call OpenAI. They use fake planner output to verify planner
+normalization, missing country or budget handling, unsupported countries, A2A
+trace generation, and budget filtering.
+
+## Optional LLM Smoke Test
+
+This smoke test uses a small number of OpenAI API calls:
 
 ```bash
 cd business-advisor
