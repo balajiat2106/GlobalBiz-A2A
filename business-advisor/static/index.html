@@ -96,6 +96,7 @@
               <p class="eyebrow">Discovery</p>
               <h2>Availability vs Selection</h2>
             </div>
+            <span id="selectionBadge" class="badge">0 selected</span>
           </div>
           <div class="selection-grid">
             <div>
@@ -115,6 +116,19 @@
               <div id="selectedAgents" class="chip-list selected"></div>
             </div>
           </div>
+        </section>
+
+        <section class="panel trace-panel">
+          <div class="panel-title">
+            <div>
+              <p class="eyebrow">Live Trace</p>
+              <h2>Advisor Execution Path</h2>
+            </div>
+            <span id="traceBadge" class="badge">Idle</span>
+          </div>
+          <ol id="traceList" class="trace-list">
+            <li>Run a mission to see the planner, tools, and agent steps.</li>
+          </ol>
         </section>
 
         <section class="panel a2a-panel">

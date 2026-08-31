@@ -287,6 +287,10 @@ button:disabled {
   min-height: 320px;
 }
 
+.trace-panel {
+  min-height: 320px;
+}
+
 .brief-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -344,6 +348,32 @@ dd {
   border-color: rgba(31, 122, 88, 0.36);
   background: #e4f2eb;
   color: var(--green);
+}
+
+.trace-list {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.trace-list li {
+  padding: 10px 12px;
+  border: 1px solid #e6dfd2;
+  background: var(--panel-soft);
+}
+
+.trace-list li::marker {
+  color: var(--green);
+  font-weight: 900;
+}
+
+.trace-list li.a2a-step {
+  border-color: rgba(39, 93, 140, 0.24);
+  background: #eef5fa;
+  color: var(--ink);
 }
 
 .a2a-timeline {

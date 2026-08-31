@@ -30,10 +30,19 @@ function setStage(name) {
   });
 }
 
-function markAllStagesDone() {
+function setCompletedStages(report) {
   document.querySelectorAll(".stage").forEach((stage) => {
-    stage.classList.remove("active");
-    stage.classList.add("done");
+    stage.classList.remove("active", "done");
+  });
+
+  const stages = ["planner"];
+  if ((report.selected_tools || []).length) stages.push("tools");
+  if ((report.a2a_events || []).length) stages.push("a2a");
+  stages.push("report");
+
+  stages.forEach((name) => {
+    const stage = document.querySelector(`.stage[data-stage="${name}"]`);
+    if (stage) stage.classList.add("done");
   });
 }
 
@@ -58,7 +67,7 @@ function showClarification(report) {
 function renderReport(report) {
   clarificationPanel.classList.add("hidden");
   messagePanel.classList.add("hidden");
-  markAllStagesDone();
+  setCompletedStages(report);
 
   document.querySelector("#plannerBadge").textContent = report.planner || "llm";
   document.querySelector("#countryValue").textContent = report.country || "-";
@@ -72,9 +81,30 @@ function renderReport(report) {
   chipList("#selectedTools", report.selected_tools);
   chipList("#identifiedAgents", report.identified_agent_capabilities);
   chipList("#selectedAgents", report.selected_agent_capabilities);
+  renderTrace(report);
 
   renderA2A(report.a2a_events || []);
   renderRecommendations(report.recommendations || []);
+}
+
+function renderTrace(report) {
+  const selectedCount = (report.selected_tools || []).length + (report.selected_agent_capabilities || []).length;
+  document.querySelector("#selectionBadge").textContent = `${selectedCount} selected`;
+  document.querySelector("#traceBadge").textContent = `${(report.trace || []).length} steps`;
+
+  const target = document.querySelector("#traceList");
+  const trace = report.trace || [];
+  if (!trace.length) {
+    target.innerHTML = `<li>No advisor trace returned.</li>`;
+    return;
+  }
+
+  target.innerHTML = trace
+    .map((item) => {
+      const isA2A = item.includes("A2A") || item.includes("Discovered");
+      return `<li class="${isA2A ? "a2a-step" : ""}">${escapeHtml(item)}</li>`;
+    })
+    .join("");
 }
 
 function renderA2A(events) {
