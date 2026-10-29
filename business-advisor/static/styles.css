@@ -285,6 +285,7 @@ button:disabled {
 }
 
 .panel {
+  min-width: 0;
   min-height: 220px;
   padding: 18px;
 }
@@ -329,6 +330,7 @@ dt {
 
 dd {
   margin: 5px 0 0;
+  overflow-wrap: anywhere;
   font-weight: 850;
 }
 
@@ -352,6 +354,8 @@ dd {
 }
 
 .chip {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   border: 1px solid var(--line);
   background: var(--panel-soft);
   color: var(--ink);
@@ -376,6 +380,7 @@ dd {
 }
 
 .trace-list li {
+  overflow-wrap: anywhere;
   padding: 10px 12px;
   border: 1px solid #e6dfd2;
   background: var(--panel-soft);
@@ -490,5 +495,29 @@ dd {
   .selection-grid,
   .brief-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .shell {
+    padding: 12px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .top-actions {
+    justify-content: flex-start;
+  }
+
+  .a2a-event dl,
+  .clarification-form {
+    grid-template-columns: 1fr;
+  }
+
+  .clarification-form button {
+    min-height: 44px;
   }
 }
