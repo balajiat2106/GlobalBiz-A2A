@@ -15,7 +15,7 @@
         </div>
         <div class="top-actions">
           <a class="console-link" href="/static/console.html">Presentation Console</a>
-          <div class="system-state" id="systemState">
+          <div class="system-state" id="systemState" role="status" aria-live="polite">
             <span class="state-light"></span>
             Ready
           </div>
@@ -61,16 +61,16 @@
         </div>
       </section>
 
-      <section id="clarificationPanel" class="notice hidden">
+      <section id="clarificationPanel" class="notice hidden" aria-live="polite">
         <strong>Clarification needed</strong>
         <p id="clarificationQuestion"></p>
         <form id="clarificationForm" class="clarification-form">
-          <input id="clarificationInput" type="text" placeholder="Type your answer" />
+          <input id="clarificationInput" type="text" placeholder="Type your answer" aria-labelledby="clarificationQuestion" />
           <button type="submit">Continue</button>
         </form>
       </section>
 
-      <section id="messagePanel" class="notice hidden"></section>
+      <section id="messagePanel" class="notice hidden" role="alert"></section>
 
       <section class="dashboard">
         <section class="panel planner-panel">
