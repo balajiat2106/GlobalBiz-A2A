@@ -9,9 +9,14 @@ const clarificationInput = document.querySelector("#clarificationInput");
 const messagePanel = document.querySelector("#messagePanel");
 
 let activeQuery = queryInput.value.trim();
+let analysisRunning = false;
 
 function setRunning(isRunning) {
+  analysisRunning = isRunning;
   runButton.disabled = isRunning;
+  clarificationForm.querySelector('button[type="submit"]').disabled = isRunning;
+  form.setAttribute("aria-busy", String(isRunning));
+  clarificationForm.setAttribute("aria-busy", String(isRunning));
   runButton.textContent = isRunning ? "Running" : "Run Mission";
   systemState.classList.toggle("running", isRunning);
   systemState.lastChild.textContent = isRunning ? " Running" : " Ready";
@@ -173,6 +178,7 @@ function formatClarification(question, answer) {
 }
 
 async function analyze(query) {
+  if (analysisRunning || !query.trim()) return;
   setRunning(true);
   setStage("planner");
   try {
@@ -220,6 +226,7 @@ form.addEventListener("submit", (event) => {
 
 clarificationForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  if (analysisRunning) return;
   const answer = clarificationInput.value.trim();
   if (!answer) return;
   const clarification = formatClarification(clarificationQuestion.textContent, answer);
